@@ -5,7 +5,10 @@ import { StyleSheet, Text, View } from 'react-native'
 export default function App() {
   return (
     <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
+      <Text style={styles.text}>
+        An Expo boilerplate including TypeScript, ESlint, Prettier, Husky,
+        Lint-staged and Jest!
+      </Text>
       <StatusBar style="auto" />
     </View>
   )
@@ -14,8 +17,14 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: '#F1F1F1',
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  text: {
+    textAlign: 'center',
+    fontSize: 16,
+    fontWeight: 'bold',
+    color: '#1A1A1A',
   },
 })

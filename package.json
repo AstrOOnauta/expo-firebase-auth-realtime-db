@@ -1,5 +1,7 @@
 {
-  "name": "expo-firebase-auth-realtime-db",
+  "name": "expo-eslint-prettier-husky-lint-staged-jest",
+  "author": "AstrOOnauta <https://github.com/AstrOOnauta>",
+  "description": "An Expo boilerplate including TypeScript, ESlint, Prettier, Husky, Lint-staged and Jest.",
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
