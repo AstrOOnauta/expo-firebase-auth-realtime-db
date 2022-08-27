@@ -10,7 +10,7 @@
     "esModuleInterop": true,
     "strict": true,
     "useUnknownInCatchVariables": false,
-    "types": ["node", "jest"]
+    "types": ["node", "jest", "@types/styled-components-react-native"]
   },
   "extends": "expo/tsconfig.base"
 }
