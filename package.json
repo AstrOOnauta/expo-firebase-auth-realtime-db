@@ -6,7 +6,9 @@
     "start": "expo start --dev-client",
     "android": "expo run:android",
     "ios": "expo run:ios",
-    "web": "expo start --web"
+    "web": "expo start --web",
+    "lint": "eslint . --ext .ts,.tsx,.js,.jsx,.json --max-warnings 0",
+    "prepare": "husky install"
   },
   "dependencies": {
     "@types/react": "~18.0.0",
@@ -26,7 +28,13 @@
     "@typescript-eslint/eslint-plugin": "^5.35.1",
     "eslint": "^8.23.0",
     "eslint-config-prettier": "^8.5.0",
+    "husky": "^8.0.1",
+    "lint-staged": "^13.0.3",
     "prettier": "^2.7.1"
   },
-  "private": true
+  "private": true,
+  "lint-staged": {
+    "*.{ts,tsx,js,jsx,json}": "eslint --cache --fix",
+    "*.{js,css,md}": "prettier --write"
+  }
 }

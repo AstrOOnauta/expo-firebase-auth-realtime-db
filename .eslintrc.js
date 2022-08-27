@@ -8,9 +8,11 @@ module.exports = {
   rules: {
     '@typescript-eslint/no-unused-vars': 'error',
     '@typescript-eslint/no-explicit-any': 'error',
+    '@typescript-eslint/no-var-requires': 0,
     'prettier/prettier': [
       'error',
       {
+        singleQuote: true,
         endOfLine: 'auto',
       },
     ],

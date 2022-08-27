@@ -2,9 +2,7 @@
   "compilerOptions": {
     "strict": true,
     "useUnknownInCatchVariables": false,
-    "types": [
-      "node"
-    ]
+    "types": ["node"]
   },
   "extends": "expo/tsconfig.base"
 }
