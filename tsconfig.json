@@ -1,0 +1,10 @@
+{
+  "compilerOptions": {
+    "strict": true,
+    "useUnknownInCatchVariables": false,
+    "types": [
+      "node"
+    ]
+  },
+  "extends": "expo/tsconfig.base"
+}
