@@ -1,0 +1,10 @@
+{
+  "expo": {
+    "name": "expo-firebase-auth-realtime-db",
+    "slug": "expo-firebase-auth-realtime-db",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  }
+}
