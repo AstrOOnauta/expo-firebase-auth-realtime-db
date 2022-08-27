@@ -1,20 +1,14 @@
-## Controle de Finanças
+## EXPO FIREBASE AUTH + FIREBASE REALTIME DB
 
-An Expo boilerplate including TypeScript, ESlint, Prettier, Husky, Lint-staged and Jest.
+An Expo Application with Firebase Auth and Firebase Realtime DB.
 
 <div align = "center">
   
-<img src="https://github.com/AstrOOnauta/boilerplate-expo-mobile/blob/master/dev-libraries.png">
+<img src="">
  
 </div>
 
-## 💻 Environment
-
-    - Node: 16.x
-    - Yarn: 1.22.x
-    - Expo: 6.0.x
-
-## 💻 Dev Libraries
+## 💻 Programming Languages and Technologies
 
     - ESLint
     - Prettier
@@ -25,7 +19,7 @@ An Expo boilerplate including TypeScript, ESlint, Prettier, Husky, Lint-staged a
 ## 📄 Instalation
 
     - Clone repository
-    $ git clone https://github.com/AstrOOnauta/boilerplate-expo-mobile.git
+    $ git clone https://github.com/AstrOOnauta/expo-firebase-auth-realtime-db.git
 
     - Install dependencies
     $ yarn

@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "expo-eslint-prettier-husky-lint-staged-jest",
-    "slug": "expo-eslint-prettier-husky-lint-staged-jest",
+    "name": "expo-firebase-auth-realtime-db",
+    "slug": "expo-firebase-auth-realtime-db",
     "version": "1.0.0",
     "assetBundlePatterns": ["**/*"]
   }
