@@ -16,7 +16,7 @@ export default function Input({ isPassword, isSearch, ...rest }: InputProps) {
     <InputContainer>
       <InputArea
         isPassword
-        secureTextEntry={showPassword}
+        secureTextEntry={isPassword && showPassword}
         activeOpacity={0.6}
         {...rest}
       />
