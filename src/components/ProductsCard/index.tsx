@@ -1,9 +1,12 @@
 import React from 'react'
+import { TouchableOpacityProps } from 'react-native'
 import { Category, Image, Name, Price, ProductsCardContainer } from './style'
 
-export default function ProductsCard() {
+interface ProductsCardProps extends TouchableOpacityProps {}
+
+export default function ProductsCard({ ...rest }: ProductsCardProps) {
   return (
-    <ProductsCardContainer activeOpacity={0.6}>
+    <ProductsCardContainer activeOpacity={0.6} {...rest}>
       <Image
         resizeMode="contain"
         source={{

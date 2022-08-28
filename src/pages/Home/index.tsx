@@ -1,7 +1,9 @@
-import React from 'react'
+import React, { useState } from 'react'
+import { Modal } from 'react-native'
 import { FlatGrid } from 'react-native-super-grid'
 
 import Input from '../../components/Form/Input'
+import ProductDetailsModal from '../../components/ProductDetailsModal'
 import ProductCard from '../../components/ProductsCard'
 import {
   BodyArea,
@@ -13,6 +15,8 @@ import {
 } from './style'
 
 export default function Home() {
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false)
+
   return (
     <HomeContainer>
       <Header>
@@ -32,10 +36,13 @@ export default function Home() {
           spacing={16}
           data={[1, 2, 3, 4, 5, 6, 7, 8]}
           renderItem={() => {
-            return <ProductCard />
+            return <ProductCard onPress={() => setIsModalOpen(true)} />
           }}
         />
       </BodyArea>
+      <Modal visible={isModalOpen}>
+        <ProductDetailsModal setIsModalOpen={setIsModalOpen} />
+      </Modal>
     </HomeContainer>
   )
 }
