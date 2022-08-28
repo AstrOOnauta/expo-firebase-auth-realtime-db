@@ -12,7 +12,7 @@ export default function Routes() {
   return (
     <NavigationContainer>
       <StatusBar barStyle="light-content" backgroundColor="#1A1A1A" />
-      {user && user.id !== '' ? <AppRoutes /> : <AuthRoutes />}
+      {user && user.id ? <AppRoutes /> : <AuthRoutes />}
     </NavigationContainer>
   )
 }
