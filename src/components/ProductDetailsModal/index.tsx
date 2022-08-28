@@ -1,5 +1,6 @@
 import React, { Dispatch, SetStateAction } from 'react'
 import { View } from 'react-native'
+import BackButton from '../BackButton'
 import Button from '../Form/Button'
 
 import {
@@ -7,8 +8,6 @@ import {
   Description,
   DescriptionArea,
   HeaderInfoArea,
-  Icon,
-  IconButton,
   Image,
   ImageArea,
   Name,
@@ -24,9 +23,7 @@ export default function ProductDetailsModal({
 }: ProductDetailsModalProps) {
   return (
     <ProductDetailsModalContainer>
-      <IconButton onPress={() => setIsModalOpen(false)}>
-        <Icon name="arrow-back" />
-      </IconButton>
+      <BackButton onPress={() => setIsModalOpen(false)} />
       <ImageArea>
         <Image
           resizeMode="contain"
