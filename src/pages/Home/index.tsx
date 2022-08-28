@@ -1,10 +1,11 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { Modal } from 'react-native'
 import { FlatGrid } from 'react-native-super-grid'
 
 import Input from '../../components/Form/Input'
 import ProductDetailsModal from '../../components/ProductDetailsModal'
 import ProductCard from '../../components/ProductsCard'
+import AuthContext from '../../shared/context/AuthContext'
 import {
   BodyArea,
   Header,
@@ -15,13 +16,15 @@ import {
 } from './style'
 
 export default function Home() {
+  const { signOut } = useContext(AuthContext)
+
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false)
 
   return (
     <HomeContainer>
       <Header>
         <Welcome>Hello, Will</Welcome>
-        <SignOutButton activeOpacity={0.6}>
+        <SignOutButton activeOpacity={0.6} onPress={signOut}>
           <Icon name="power" />
         </SignOutButton>
       </Header>
