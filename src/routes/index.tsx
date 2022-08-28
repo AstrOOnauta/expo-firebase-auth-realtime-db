@@ -4,7 +4,7 @@ import { StatusBar } from 'react-native'
 
 import { AuthRoutes } from './auth.routes'
 import AuthContext from '../shared/context/AuthContext'
-import Home from '../pages/Home'
+import { AppRoutes } from './app.routes'
 
 export default function Routes() {
   const { user } = useContext(AuthContext)
@@ -12,7 +12,7 @@ export default function Routes() {
   return (
     <NavigationContainer>
       <StatusBar barStyle="light-content" backgroundColor="#1A1A1A" />
-      {user && user.id !== '' ? <Home /> : <AuthRoutes />}
+      {user && user.id !== '' ? <AppRoutes /> : <AuthRoutes />}
     </NavigationContainer>
   )
 }
