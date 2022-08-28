@@ -1,7 +1,7 @@
 export const firebaseConfig = {
   apiKey: process.env.API_KEY,
   authDomain: process.env.AUTH_DOMAIN,
-  databaseURL: 'https://myapp-10762-default-rtdb.firebaseio.com',
+  databaseURL: process.env.DATABASE_URL,
   projectId: process.env.PROJECT_ID,
   storageBucket: process.env.STORAGE_BUCKET,
   messagingSenderId: process.env.MESSAGING_SENDER_ID,
