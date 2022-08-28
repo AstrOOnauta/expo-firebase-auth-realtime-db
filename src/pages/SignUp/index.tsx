@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Alert } from 'react-native'
+import { Alert, Keyboard, TouchableWithoutFeedback } from 'react-native'
 import { useNavigation } from '@react-navigation/native'
 import { initializeApp } from 'firebase/app'
 import {
@@ -54,37 +54,39 @@ export default function SignUp() {
   }
 
   return (
-    <SignUpContainer>
-      <Input
-        placeholder="Name"
-        placeholderTextColor="#AAAAAA"
-        isDark
-        value={name}
-        onChangeText={setName}
-      />
-      <Input
-        placeholder="Email"
-        placeholderTextColor="#AAAAAA"
-        isDark
-        value={email}
-        onChangeText={setEmail}
-      />
-      <Input
-        placeholder="Password"
-        placeholderTextColor="#AAAAAA"
-        isDark
-        isPassword
-        value={password}
-        onChangeText={setPassword}
-      />
-      <Button title="SIGN UP" type="primary" onPress={handleSubmit} />
-      <Button
-        title="I HAVE AN ACCOUNT"
-        type="secondary"
-        onPress={() => navigation.navigate('SignIn' as never)}
-      />
-      <Blob position="top-right" />
-      <Blob position="bottom-left" />
-    </SignUpContainer>
+    <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+      <SignUpContainer>
+        <Input
+          placeholder="Name"
+          placeholderTextColor="#AAAAAA"
+          isDark
+          value={name}
+          onChangeText={setName}
+        />
+        <Input
+          placeholder="Email"
+          placeholderTextColor="#AAAAAA"
+          isDark
+          value={email}
+          onChangeText={setEmail}
+        />
+        <Input
+          placeholder="Password"
+          placeholderTextColor="#AAAAAA"
+          isDark
+          isPassword
+          value={password}
+          onChangeText={setPassword}
+        />
+        <Button title="SIGN UP" type="primary" onPress={handleSubmit} />
+        <Button
+          title="I HAVE AN ACCOUNT"
+          type="secondary"
+          onPress={() => navigation.navigate('SignIn' as never)}
+        />
+        <Blob position="top-right" />
+        <Blob position="bottom-left" />
+      </SignUpContainer>
+    </TouchableWithoutFeedback>
   )
 }

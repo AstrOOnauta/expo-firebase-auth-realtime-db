@@ -1,5 +1,10 @@
 import React, { useCallback, useContext, useEffect, useState } from 'react'
-import { ActivityIndicator, Modal } from 'react-native'
+import {
+  ActivityIndicator,
+  Keyboard,
+  Modal,
+  TouchableWithoutFeedback,
+} from 'react-native'
 import { useFocusEffect } from '@react-navigation/native'
 import { FlatGrid } from 'react-native-super-grid'
 import { initializeApp } from 'firebase/app'
@@ -76,45 +81,47 @@ export default function Home() {
   )
 
   return (
-    <HomeContainer>
-      <Header>
-        <Welcome>Hello, {user.name}</Welcome>
-        <SignOutButton activeOpacity={0.6} onPress={signOut}>
-          <Icon name="power" />
-        </SignOutButton>
-      </Header>
-      <BodyArea>
-        <SearchInput
-          placeholder="Search an product or a category"
-          placeholderTextColor="#AAAAAA"
-          products={products}
-          setFilteredProducts={setFilteredProducts}
-        />
-        {isLoading ? (
-          <ActivityIndicator color="#FBB034" size={45} />
-        ) : (
-          <FlatGrid
-            showsVerticalScrollIndicator={false}
-            spacing={16}
-            data={filteredProducts}
-            renderItem={({ item }) => {
-              return (
-                <ProductCard
-                  key={item.id}
-                  item={item}
-                  onPress={() => handleProduct(item)}
-                />
-              )
-            }}
+    <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+      <HomeContainer>
+        <Header>
+          <Welcome>Hello, {user.name}</Welcome>
+          <SignOutButton activeOpacity={0.6} onPress={signOut}>
+            <Icon name="power" />
+          </SignOutButton>
+        </Header>
+        <BodyArea>
+          <SearchInput
+            placeholder="Search an product or a category"
+            placeholderTextColor="#AAAAAA"
+            products={products}
+            setFilteredProducts={setFilteredProducts}
           />
-        )}
-      </BodyArea>
-      <Modal visible={isModalOpen}>
-        <ProductDetailsModal
-          product={selectedProduct}
-          setIsModalOpen={setIsModalOpen}
-        />
-      </Modal>
-    </HomeContainer>
+          {isLoading ? (
+            <ActivityIndicator color="#FBB034" size={45} />
+          ) : (
+            <FlatGrid
+              showsVerticalScrollIndicator={false}
+              spacing={16}
+              data={filteredProducts}
+              renderItem={({ item }) => {
+                return (
+                  <ProductCard
+                    key={item.id}
+                    item={item}
+                    onPress={() => handleProduct(item)}
+                  />
+                )
+              }}
+            />
+          )}
+        </BodyArea>
+        <Modal visible={isModalOpen}>
+          <ProductDetailsModal
+            product={selectedProduct}
+            setIsModalOpen={setIsModalOpen}
+          />
+        </Modal>
+      </HomeContainer>
+    </TouchableWithoutFeedback>
   )
 }

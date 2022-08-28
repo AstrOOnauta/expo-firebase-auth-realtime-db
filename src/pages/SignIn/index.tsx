@@ -2,7 +2,7 @@ import { useNavigation } from '@react-navigation/native'
 import { initializeApp } from 'firebase/app'
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth'
 import React, { useContext, useState } from 'react'
-import { Alert } from 'react-native'
+import { Alert, Keyboard, TouchableWithoutFeedback } from 'react-native'
 
 import Blob from '../../components/Blob'
 import Button from '../../components/Form/Button'
@@ -49,36 +49,40 @@ export default function SignIn() {
   }
 
   return (
-    <SignInContainer>
-      <Input
-        placeholder="Email"
-        placeholderTextColor="#AAAAAA"
-        value={email}
-        onChangeText={setEmail}
-      />
-      <Input
-        placeholder="Password"
-        placeholderTextColor="#AAAAAA"
-        isPassword
-        value={password}
-        onChangeText={setPassword}
-      />
-      <ForgotPasswordButtonArea>
-        <ForgotPasswordButton
-          activeOpacity={0.6}
-          onPress={() => navigation.navigate('RecoveryPassword' as never)}
-        >
-          <ForgotPasswordButtonText>Forgot password?</ForgotPasswordButtonText>
-        </ForgotPasswordButton>
-      </ForgotPasswordButtonArea>
-      <Button title="SIGN IN" type="primary" onPress={handleSubmit} />
-      <Button
-        title="CREATE AN ACCOUNT"
-        type="secondary"
-        onPress={() => navigation.navigate('SignUp' as never)}
-      />
-      <Blob isDark position="top-right" />
-      <Blob isDark position="bottom-left" />
-    </SignInContainer>
+    <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+      <SignInContainer>
+        <Input
+          placeholder="Email"
+          placeholderTextColor="#AAAAAA"
+          value={email}
+          onChangeText={setEmail}
+        />
+        <Input
+          placeholder="Password"
+          placeholderTextColor="#AAAAAA"
+          isPassword
+          value={password}
+          onChangeText={setPassword}
+        />
+        <ForgotPasswordButtonArea>
+          <ForgotPasswordButton
+            activeOpacity={0.6}
+            onPress={() => navigation.navigate('RecoveryPassword' as never)}
+          >
+            <ForgotPasswordButtonText>
+              Forgot password?
+            </ForgotPasswordButtonText>
+          </ForgotPasswordButton>
+        </ForgotPasswordButtonArea>
+        <Button title="SIGN IN" type="primary" onPress={handleSubmit} />
+        <Button
+          title="CREATE AN ACCOUNT"
+          type="secondary"
+          onPress={() => navigation.navigate('SignUp' as never)}
+        />
+        <Blob isDark position="top-right" />
+        <Blob isDark position="bottom-left" />
+      </SignInContainer>
+    </TouchableWithoutFeedback>
   )
 }
