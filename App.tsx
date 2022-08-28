@@ -6,11 +6,14 @@ import 'intl/locale-data/jsonp/en-US'
 
 import theme from './src/styles/theme'
 import Routes from './src/routes'
+import { AuthContextProvider } from './src/shared/context/AuthContext'
 
 export default function App() {
   return (
     <ThemeProvider theme={theme}>
-      <Routes />
+      <AuthContextProvider>
+        <Routes />
+      </AuthContextProvider>
     </ThemeProvider>
   )
 }
