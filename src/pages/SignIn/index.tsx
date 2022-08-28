@@ -41,8 +41,6 @@ export default function SignIn() {
 
           setEmail('')
           setPassword('')
-
-          navigation.navigate('Home' as never)
         })
         .catch((error) => {
           Alert.alert(error.code, error.message)

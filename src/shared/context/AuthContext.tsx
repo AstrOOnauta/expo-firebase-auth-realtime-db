@@ -12,7 +12,7 @@ type PropsAuthContext = {
 }
 
 const DEFAULT_VALUE = {
-  user: { id: '', name: '', email: '' },
+  user: {} as UserType,
   setUser: () => {},
 }
 
@@ -25,6 +25,7 @@ const AuthContextProvider: React.FC<ChildrenInterface> = ({ children }) => {
 
   async function signIn(newUser: UserType) {
     try {
+      setUser(newUser)
       await AsyncStorage.setItem(userKey, JSON.stringify(newUser))
     } catch (error) {
       throw new Error(error.message)
@@ -32,7 +33,7 @@ const AuthContextProvider: React.FC<ChildrenInterface> = ({ children }) => {
   }
 
   async function signOut() {
-    setUser({ id: '', name: '', email: '' })
+    setUser({} as UserType)
     await AsyncStorage.removeItem(userKey)
   }
 
