@@ -1,5 +1,7 @@
+import { getDatabase, ref, remove } from 'firebase/database'
 import React, { Dispatch, SetStateAction } from 'react'
-import { View } from 'react-native'
+import { Alert, View } from 'react-native'
+import { ProductResponse } from '../../shared/interfaces/ProductResponse'
 import BackButton from '../BackButton'
 import Button from '../Form/Button'
 
@@ -13,14 +15,33 @@ import {
   Name,
   Price,
   ProductDetailsModalContainer,
+  Stock,
 } from './style'
 
 interface ProductDetailsModalProps {
   setIsModalOpen: Dispatch<SetStateAction<boolean>>
+  product: ProductResponse
 }
 export default function ProductDetailsModal({
+  product,
   setIsModalOpen,
 }: ProductDetailsModalProps) {
+  async function handleDeleteProduct() {
+    const db = await getDatabase()
+
+    const productDB = ref(db, 'products/' + product.id)
+
+    remove(productDB)
+      .then(() => {
+        Alert.alert('Success', 'Product successfully deleted!')
+      })
+      .catch((error) => {
+        Alert.alert(error.code, error.message)
+      })
+
+    setIsModalOpen(false)
+  }
+
   return (
     <ProductDetailsModalContainer>
       <BackButton onPress={() => setIsModalOpen(false)} />
@@ -28,44 +49,36 @@ export default function ProductDetailsModal({
         <Image
           resizeMode="contain"
           source={{
-            uri: 'https://rafaturis.com.br/wp-content/uploads/2014/01/default-placeholder.png',
+            uri: product.imageUrl
+              ? product.imageUrl
+              : 'https://rafaturis.com.br/wp-content/uploads/2014/01/default-placeholder.png',
           }}
         />
       </ImageArea>
       <HeaderInfoArea>
         <View>
-          <Name>Notebook</Name>
-          <Category>Eletronics</Category>
+          <Name>{product.product}</Name>
+          <Category>{product.category}</Category>
         </View>
         <Price>
           {new Intl.NumberFormat('en-US', {
             style: 'currency',
             currency: 'USD',
-          }).format(Number('800'))}
+          }).format(Number(product.price))}
         </Price>
       </HeaderInfoArea>
-      <DescriptionArea>
-        <Description>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Et vel illum,
-          libero voluptatibus mollitia officiis, minima dolorum facere quam
-          laboriosam pariatur aliquam doloribus sequi dolore voluptate molestias
-          animi maxime numquam id necessitatibus hic nostrum obcaecati! Nulla
-          recusandae itaque architecto repellendus! Eum dignissimos cumque
-          error? Nisi neque molestias non itaque error ratione, iste vel nam
-          omnis debitis, similique perspiciatis accusantium cumque atque officia
-          quos deserunt rerum quam tenetur quisquam quod. Voluptate harum
-          facilis sequi quo, perferendis molestias eum vel qui cumque repellat
-          excepturi perspiciatis quia sapiente non ipsum consequatur optio
-          accusantium quidem alias cupiditate repudiandae rerum amet? Minima
-          esse distinctio et! Doloremque ipsum cumque nulla minima harum,
-          accusamus error ut mollitia quidem expedita. Exercitationem, deserunt.
-          Quas at voluptatum et nam, a eligendi, quasi, sequi mollitia inventore
-          quo nobis ut voluptate ex aperiam facilis alias? Cupiditate beatae
-          nesciunt facilis. Accusantium esse suscipit enim dolorum recusandae
-          ad, voluptatum perspiciatis eum odio earum aperiam!
-        </Description>
+      <DescriptionArea showsVerticalScrollIndicator={false}>
+        <Description>{product.description}</Description>
       </DescriptionArea>
-      <Button title="DELETE PRODUCT" type="danger" />
+      <Stock>
+        Stock: {product.stock}&nbsp;
+        {Number(product.stock) > 1 ? 'unities' : 'unity'}
+      </Stock>
+      <Button
+        title="DELETE PRODUCT"
+        type="danger"
+        onPress={handleDeleteProduct}
+      />
     </ProductDetailsModalContainer>
   )
 }

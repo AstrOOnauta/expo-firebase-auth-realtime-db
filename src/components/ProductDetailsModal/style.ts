@@ -49,3 +49,8 @@ export const DescriptionArea = styled.ScrollView`
 export const Description = styled.Text`
   color: ${(props) => props.theme.colors.grey500};
 `
+
+export const Stock = styled.Text`
+  margin-top: 24px;
+  color: ${(props) => props.theme.colors.grey100};
+`

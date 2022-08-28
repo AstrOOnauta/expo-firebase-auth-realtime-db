@@ -1,25 +1,30 @@
 import React from 'react'
 import { TouchableOpacityProps } from 'react-native'
+import { ProductResponse } from '../../shared/interfaces/ProductResponse'
 import { Category, Image, Name, Price, ProductsCardContainer } from './style'
 
-interface ProductsCardProps extends TouchableOpacityProps {}
+interface ProductsCardProps extends TouchableOpacityProps {
+  item: ProductResponse
+}
 
-export default function ProductsCard({ ...rest }: ProductsCardProps) {
+export default function ProductsCard({ item, ...rest }: ProductsCardProps) {
   return (
     <ProductsCardContainer activeOpacity={0.6} {...rest}>
       <Image
         resizeMode="contain"
         source={{
-          uri: 'https://rafaturis.com.br/wp-content/uploads/2014/01/default-placeholder.png',
+          uri: item.imageUrl
+            ? item.imageUrl
+            : 'https://rafaturis.com.br/wp-content/uploads/2014/01/default-placeholder.png',
         }}
       />
-      <Name>Notebook</Name>
-      <Category>Eletronics</Category>
+      <Name>{item.product}</Name>
+      <Category>{item.category}</Category>
       <Price>
         {new Intl.NumberFormat('en-US', {
           style: 'currency',
           currency: 'USD',
-        }).format(Number('800'))}
+        }).format(Number(item.price))}
       </Price>
     </ProductsCardContainer>
   )
