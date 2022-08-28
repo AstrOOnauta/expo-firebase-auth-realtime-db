@@ -24,7 +24,7 @@ export const InputArea = styled.TextInput<ThemeProps>`
   padding-right: ${(props) => (props.isPassword ? 52 : 16)};
 `
 
-export const EyeIcon = styled(Feather)<ThemeProps>`
+export const Icon = styled(Feather)<ThemeProps>`
   font-size: 24px;
   color: ${(props) => props.theme.colors.grey500};
   margin-left: -40px;
