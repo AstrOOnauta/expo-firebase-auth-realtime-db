@@ -5,6 +5,7 @@ import { Feather } from '@expo/vector-icons'
 import { Entypo } from '@expo/vector-icons'
 
 import Home from '../pages/Home'
+import CreateProduct from '../pages/CreateProduct'
 
 export function AppRoutes() {
   const Tab = createBottomTabNavigator()
@@ -30,8 +31,8 @@ export function AppRoutes() {
         }}
       />
       <Tab.Screen
-        name="Register Product"
-        component={Home}
+        name="Add Product"
+        component={CreateProduct}
         options={{
           headerShown: false,
           tabBarShowLabel: false,
