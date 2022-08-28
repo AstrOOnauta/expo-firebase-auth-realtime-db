@@ -6,10 +6,9 @@ import { Icon, InputContainer, InputArea } from './style'
 interface InputProps extends TextInputProps {
   isDark?: boolean
   isPassword?: boolean
-  isSearch?: boolean
 }
 
-export default function Input({ isPassword, isSearch, ...rest }: InputProps) {
+export default function Input({ isPassword, ...rest }: InputProps) {
   const [showPassword, setShowPassword] = useState<boolean>(true)
 
   return (
@@ -26,11 +25,6 @@ export default function Input({ isPassword, isSearch, ...rest }: InputProps) {
           onPress={() => setShowPassword(!showPassword)}
         >
           {showPassword ? <Icon name="eye-off" /> : <Icon name="eye" />}
-        </TouchableOpacity>
-      )}
-      {isSearch && (
-        <TouchableOpacity activeOpacity={0.6}>
-          <Icon name="search" />
         </TouchableOpacity>
       )}
     </InputContainer>

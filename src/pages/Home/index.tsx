@@ -1,11 +1,10 @@
-import React, { useCallback, useContext, useState } from 'react'
+import React, { useCallback, useContext, useEffect, useState } from 'react'
 import { ActivityIndicator, Modal } from 'react-native'
 import { useFocusEffect } from '@react-navigation/native'
 import { FlatGrid } from 'react-native-super-grid'
 import { initializeApp } from 'firebase/app'
 import { getDatabase, ref, onValue } from 'firebase/database'
 
-import Input from '../../components/Form/Input'
 import ProductDetailsModal from '../../components/ProductDetailsModal'
 import ProductCard from '../../components/ProductsCard'
 import { firebaseConfig } from '../../database/firebaseConnection'
@@ -19,11 +18,15 @@ import {
   Icon,
   Welcome,
 } from './style'
+import SearchInput from '../../components/SearchInput'
 
 export default function Home() {
   const { signOut, user } = useContext(AuthContext)
 
   const [products, setProducts] = useState<ProductResponse[]>([])
+  const [filteredProducts, setFilteredProducts] = useState<ProductResponse[]>(
+    []
+  )
   const [selectedProduct, setSelectedProduct] = useState({} as ProductResponse)
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false)
 
@@ -62,6 +65,10 @@ export default function Home() {
     setIsLoading(false)
   }
 
+  useEffect(() => {
+    setFilteredProducts(products)
+  }, [products])
+
   useFocusEffect(
     useCallback(() => {
       getProducts()
@@ -77,10 +84,11 @@ export default function Home() {
         </SignOutButton>
       </Header>
       <BodyArea>
-        <Input
+        <SearchInput
           placeholder="Search an product or a category"
           placeholderTextColor="#AAAAAA"
-          isSearch
+          products={products}
+          setFilteredProducts={setFilteredProducts}
         />
         {isLoading ? (
           <ActivityIndicator color="#FBB034" size={45} />
@@ -88,7 +96,7 @@ export default function Home() {
           <FlatGrid
             showsVerticalScrollIndicator={false}
             spacing={16}
-            data={products}
+            data={filteredProducts}
             renderItem={({ item }) => {
               return (
                 <ProductCard
