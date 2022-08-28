@@ -23,7 +23,12 @@ export default function RecoveryPassword() {
     if (email !== '') {
       sendPasswordResetEmail(auth, email)
         .then(() => {
-          Alert.alert('Success', 'Password reset email sent!')
+          Alert.alert('Success', 'Password reset email sent!', [
+            {
+              text: 'Ok',
+              onPress: () => navigation.navigate('SignIn' as never),
+            },
+          ])
         })
         .catch((error) => {
           Alert.alert(error.code, error.message)

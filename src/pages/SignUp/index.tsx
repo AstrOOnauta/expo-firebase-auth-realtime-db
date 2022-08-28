@@ -32,13 +32,16 @@ export default function SignUp() {
             displayName: name,
           })
             .then(() => {
-              Alert.alert('Success', 'User successfully created!')
+              Alert.alert('Success', 'User successfully created!', [
+                {
+                  text: 'Ok',
+                  onPress: () => navigation.navigate('SignIn' as never),
+                },
+              ])
 
               setName('')
               setEmail('')
               setPassword('')
-
-              navigation.navigate('SignIn' as never)
             })
             .catch((error) => {
               Alert.alert(error.code, error.message)
